@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Bhavans Lake to Spit Map</title>
+  <link rel="icon" type="image/png" href="{% static 'images/rideLogo.png' %}" />
+  <script>
+    L_NO_TOUCH = false;
+    L_DISABLE_3D = false;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"
+  />
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <style>
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  </style>
+
+  <meta
+    name="viewport"
+    content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <style>
+    #map_517392f19b454af09e2d30e6d5982149 {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      left: 0%;
+      top: 0%;
+    }
+  </style>
+</head>
+<body>
+  <div class="folium-map" id="map_517392f19b454af09e2d30e6d5982149"></div>
+</body>
+<script>
+  var map_517392f19b454af09e2d30e6d5982149 = L.map(
+    "map_517392f19b454af09e2d30e6d5982149",
+    {
+      center: [19.123178, 72.836115],
+      crs: L.CRS.EPSG3857,
+      zoom: 18,
+      zoomControl: true,
+      preferCanvas: false,
+    }
+  );
+
+  var tile_layer_f341c1b58cf3435795424bbeb6615b9d = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      attribution:
+        'Data by \u0026copy; \u003ca href="http://openstreetmap.org"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href="http://www.openstreetmap.org/copyright"\u003eODbL\u003c/a\u003e.',
+      detectRetina: false,
+      maxNativeZoom: 18,
+      maxZoom: 18,
+      minZoom: 0,
+      noWrap: false,
+      opacity: 1,
+      subdomains: "abc",
+      tms: false,
+    }
+  ).addTo(map_517392f19b454af09e2d30e6d5982149);
+
+  var feature_group_cfcd912bedba485eae5514ee56d4ef5b = L.featureGroup({}).addTo(
+    map_517392f19b454af09e2d30e6d5982149
+  );
+
+  var marker_897dfaecf9314ffb8ebb2121a73e7076 = L.marker(
+    [19.124631, 72.834747],
+    {}
+  ).addTo(feature_group_cfcd912bedba485eae5514ee56d4ef5b);
+
+  var icon_afd85427c7534b209243d699800276a0 = L.AwesomeMarkers.icon({
+    extraClasses: "fa-rotate-0",
+    icon: "info-sign",
+    iconColor: "white",
+    markerColor: "green",
+    prefix: "glyphicon",
+  });
+  marker_897dfaecf9314ffb8ebb2121a73e7076.setIcon(
+    icon_afd85427c7534b209243d699800276a0
+  );
+
+  var popup_b0d37994a541423f9e567e3fe503b50f = L.popup({ maxWidth: "100%" });
+
+  var html_81f4354cabb141af98442f095311aac7 = $(
+    `<div id="html_81f4354cabb141af98442f095311aac7" style="width: 100.0%; height: 100.0%;">Bhavan's Lake </div>`
+  )[0];
+  popup_b0d37994a541423f9e567e3fe503b50f.setContent(
+    html_81f4354cabb141af98442f095311aac7
+  );
+
+  marker_897dfaecf9314ffb8ebb2121a73e7076.bindPopup(
+    popup_b0d37994a541423f9e567e3fe503b50f
+  );
+
+  var marker_81ae6c1e615f4270b102e73a704550df = L.marker(
+    [19.123178, 72.836115],
+    {}
+  ).addTo(feature_group_cfcd912bedba485eae5514ee56d4ef5b);
+
+  var icon_4f6f705d506740d1961000f42d48494d = L.AwesomeMarkers.icon({
+    extraClasses: "fa-rotate-0",
+    icon: "info-sign",
+    iconColor: "white",
+    markerColor: "green",
+    prefix: "glyphicon",
+  });
+  marker_81ae6c1e615f4270b102e73a704550df.setIcon(
+    icon_4f6f705d506740d1961000f42d48494d
+  );
+
+  var popup_83fa3bdcd76d4b1f9c1d495236ffb76a = L.popup({ maxWidth: "100%" });
+
+  var html_26ecb8a1dfa84e2db48385f557a0ec5b = $(
+    `<div id="html_26ecb8a1dfa84e2db48385f557a0ec5b" style="width: 100.0%; height: 100.0%;">SPIT</div>`
+  )[0];
+  popup_83fa3bdcd76d4b1f9c1d495236ffb76a.setContent(
+    html_26ecb8a1dfa84e2db48385f557a0ec5b
+  );
+
+  marker_81ae6c1e615f4270b102e73a704550df.bindPopup(
+    popup_83fa3bdcd76d4b1f9c1d495236ffb76a
+  );
+</script>

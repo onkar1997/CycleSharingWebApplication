@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Lake to Bhavans Colg</title>
+  <link rel="icon" type="image/png" href="{% static 'images/rideLogo.png' %}" />
+  <script>
+    L_NO_TOUCH = false;
+    L_DISABLE_3D = false;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"
+  />
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <style>
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  </style>
+
+  <meta
+    name="viewport"
+    content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <style>
+    #map_5d7f69fdaf2c489e93b4f16ad5ddb8bf {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      left: 0%;
+      top: 0%;
+    }
+  </style>
+</head>
+<body>
+  <div class="folium-map" id="map_5d7f69fdaf2c489e93b4f16ad5ddb8bf"></div>
+</body>
+<script>
+  var map_5d7f69fdaf2c489e93b4f16ad5ddb8bf = L.map(
+    "map_5d7f69fdaf2c489e93b4f16ad5ddb8bf",
+    {
+      center: [19.123178, 72.836115],
+      crs: L.CRS.EPSG3857,
+      zoom: 18,
+      zoomControl: true,
+      preferCanvas: false,
+    }
+  );
+
+  var tile_layer_3713f130e97b435f8d17f04f8d9bd280 = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      attribution:
+        'Data by \u0026copy; \u003ca href="http://openstreetmap.org"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href="http://www.openstreetmap.org/copyright"\u003eODbL\u003c/a\u003e.',
+      detectRetina: false,
+      maxNativeZoom: 18,
+      maxZoom: 18,
+      minZoom: 0,
+      noWrap: false,
+      opacity: 1,
+      subdomains: "abc",
+      tms: false,
+    }
+  ).addTo(map_5d7f69fdaf2c489e93b4f16ad5ddb8bf);
+
+  var feature_group_26cdaf94e0f8457cb0122cd350359b7a = L.featureGroup({}).addTo(
+    map_5d7f69fdaf2c489e93b4f16ad5ddb8bf
+  );
+
+  var marker_9710e2b4ef9844a491bf5f284730a143 = L.marker(
+    [19.125023, 72.835885],
+    {}
+  ).addTo(feature_group_26cdaf94e0f8457cb0122cd350359b7a);
+
+  var icon_95c723c50c6f41faaf8c6dfbfa85a87d = L.AwesomeMarkers.icon({
+    extraClasses: "fa-rotate-0",
+    icon: "info-sign",
+    iconColor: "white",
+    markerColor: "green",
+    prefix: "glyphicon",
+  });
+  marker_9710e2b4ef9844a491bf5f284730a143.setIcon(
+    icon_95c723c50c6f41faaf8c6dfbfa85a87d
+  );
+
+  var popup_bd9c9538a01f4eb5a2b698f8106cd333 = L.popup({ maxWidth: "100%" });
+
+  var html_bc726e36b130486d8edad701145cd8db = $(
+    `<div id="html_bc726e36b130486d8edad701145cd8db" style="width: 100.0%; height: 100.0%;">Bhavan's Main Building </div>`
+  )[0];
+  popup_bd9c9538a01f4eb5a2b698f8106cd333.setContent(
+    html_bc726e36b130486d8edad701145cd8db
+  );
+
+  marker_9710e2b4ef9844a491bf5f284730a143.bindPopup(
+    popup_bd9c9538a01f4eb5a2b698f8106cd333
+  );
+
+  var marker_050e94fc7fa24db29041613153834114 = L.marker(
+    [19.124631, 72.834747],
+    {}
+  ).addTo(feature_group_26cdaf94e0f8457cb0122cd350359b7a);
+
+  var icon_3e20553322194d58a75e42879bcbd824 = L.AwesomeMarkers.icon({
+    extraClasses: "fa-rotate-0",
+    icon: "info-sign",
+    iconColor: "white",
+    markerColor: "green",
+    prefix: "glyphicon",
+  });
+  marker_050e94fc7fa24db29041613153834114.setIcon(
+    icon_3e20553322194d58a75e42879bcbd824
+  );
+
+  var popup_6e9364a8114c49e5bb3cee5df63963f7 = L.popup({ maxWidth: "100%" });
+
+  var html_5855c81472b14624b9c288ee91347765 = $(
+    `<div id="html_5855c81472b14624b9c288ee91347765" style="width: 100.0%; height: 100.0%;">Bhavans Lake</div>`
+  )[0];
+  popup_6e9364a8114c49e5bb3cee5df63963f7.setContent(
+    html_5855c81472b14624b9c288ee91347765
+  );
+
+  marker_050e94fc7fa24db29041613153834114.bindPopup(
+    popup_6e9364a8114c49e5bb3cee5df63963f7
+  );
+</script>

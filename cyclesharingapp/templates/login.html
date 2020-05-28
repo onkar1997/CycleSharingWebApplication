@@ -1,0 +1,108 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<!-- NAVBAR -->
+<nav
+  class="navbar navbar-expand-lg py-3"
+  style="
+    background-color: rgba(200, 200, 200, 0.2);
+    color: black;
+    font-weight: bold;
+    border-bottom: solid 2px #1270af;
+    box-shadow: 0px 0px 10px 1px rgba(51, 123, 206, 0.6);
+  "
+>
+  <div class="container">
+    <a
+      class="navbar-brand animate__animated animate__swing"
+      href="/"
+      style="font-size: 30px;"
+      ><strong>Ubike</strong></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <a class="nav-item nav-link text-secondary" style="font-style: italic;"
+          >Hello, {{ user.first_name }}</a
+        >
+        <a class="nav-item nav-link" href="users/logout">Logout</a>
+        {% else %}
+        <a class="nav-item nav-link" href="/">Home</a>
+        <a class="nav-item nav-link" href="login">BookRide</a>
+        <a class="nav-item nav-link" href="register">Register</a>
+        <a class="nav-item nav-link" href="login">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div
+  class="container animate__animated animate__fadeIn"
+  style="
+    width: 40%;
+    margin: 4% auto;
+    padding: 3rem;
+    box-shadow: 0px 0px 15px 0px rgba(5, 150, 5, 0.6);
+  "
+>
+  <h1 class="text-center text-success pb-4">Login</h1>
+
+  <form action="login" method="POST">
+    {% csrf_token %}
+
+    <div
+      class="container"
+      id="base"
+      style="background: rgba(255, 0, 0, 0.6); margin: 0;"
+    >
+      {% for message in messages %}
+      <p class="text-white" style="padding: 5px 0;">
+        {{message}}
+        <button type="button" id="closeMsg" class="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </p>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        placeholder="Username"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="Password"
+        required
+      />
+      <small class="text-primary">
+        <a href="register" style="text-decoration: none;">Or Register ?</a>
+      </small>
+    </div>
+
+    <button type="submit" class="btn btn-outline-success btn-block">
+      Submit
+    </button>
+  </form>
+</div>
+
+{% endblock %}

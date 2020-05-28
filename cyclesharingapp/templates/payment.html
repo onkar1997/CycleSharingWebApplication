@@ -1,0 +1,176 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- NAVBAR -->
+<nav
+  class="navbar navbar-expand-lg py-3"
+  style="
+    background-color: rgba(200, 200, 200, 0.2);
+    color: black;
+    font-weight: bold;
+    border-bottom: solid 2px #1270af;
+    box-shadow: 0px 0px 10px 1px rgba(51, 123, 206, 0.6);
+  "
+>
+  <div class="container">
+    <a
+      class="navbar-brand animate__animated animate__swing"
+      href="/"
+      style="font-size: 30px;"
+      ><strong>Ubike</strong></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav mr-auto">
+        <a
+          href="#"
+          class="nav-item nav-link text-secondary text-warning"
+          style="
+            font-style: italic;
+            text-decoration: underline;
+            margin-left: 220%;
+            font-size: 26px;
+          "
+          ><strong>PAYMENTS</strong></a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="padding">
+  <div class="row">
+    <div class="container-fluid d-flex justify-content-center">
+      <div class="col-sm-8 col-md-6">
+        {% for message in messages %}
+        <div
+          class="container alert {{message.tags}}"
+          id="msg"
+          role="alert"
+          style="position: absolute; top: 0;"
+        >
+          {{message}}
+        </div>
+        {% endfor %}
+        <div
+          class="card"
+          style="box-shadow: 0px 0px 15px 0px rgba(75, 68, 68, 0.7);"
+        >
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                <span><strong>CREDIT/DEBIT CARD PAYMENT</strong></span>
+              </div>
+              <div class="col-md-6 text-right" style="margin-top: -5px;">
+                <img src="https://img.icons8.com/color/36/000000/visa.png" />
+                <img
+                  src="https://img.icons8.com/color/36/000000/mastercard.png"
+                />
+                <img src="https://img.icons8.com/color/36/000000/amex.png" />
+              </div>
+            </div>
+          </div>
+          <div class="card-body" style="height: 400px;">
+            <form action="donePayment" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="cc-number" class="control-label">CARD NUMBER</label>
+                <input
+                  id="cc-number"
+                  type="text"
+                  name="cardNumber"
+                  class="input-lg form-control cc-number"
+                  autocomplete="cc-number"
+                  placeholder="•••• •••• •••• ••••"
+                  required
+                />
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cc-exp" class="control-label"
+                      >CARD EXPIRY</label
+                    >
+                    <input
+                      id="cc-exp"
+                      type="text"
+                      name="cardExpiry"
+                      class="input-lg form-control cc-exp"
+                      autocomplete="cc-exp"
+                      placeholder="•• / ••"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cc-cvc" class="control-label">CARD CVC</label>
+                    <input
+                      id="cc-cvc"
+                      type="text"
+                      name="cardCv"
+                      class="input-lg form-control cc-cvc"
+                      autocomplete="off"
+                      placeholder="••••"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="numeric" class="control-label"
+                  >CARD HOLDER NAME</label
+                >
+                <input
+                  type="text"
+                  name="cardHolder"
+                  class="input-lg form-control"
+                />
+              </div>
+              <div class="form-group">
+                <button
+                  id="done"
+                  type="button"
+                  class="btn btn-primary btn-md form-control"
+                >
+                  TOTAL AMOUNT : ₹ 10
+                </button>
+              </div>
+
+              <div class="form-group">
+                <button
+                  id="done"
+                  type="submit"
+                  class="btn btn-success btn-md form-control"
+                >
+                  PAY
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  //alerting messages
+  setTimeout(function () {
+    if ($("#msg").length > 0) {
+      $("#msg").remove();
+    }
+  }, 3000);
+</script>
+
+{% endblock %}

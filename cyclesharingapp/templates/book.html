@@ -1,0 +1,292 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<!-- NAVBAR -->
+<nav
+  class="navbar navbar-expand-lg py-3"
+  style="
+    background-color: rgba(200, 200, 200, 0.2);
+    color: black;
+    font-weight: bold;
+    border-bottom: solid 2px #1270af;
+    box-shadow: 0px 0px 10px 1px rgba(51, 123, 206, 0.6);
+  "
+>
+  <div class="container">
+    <a
+      class="navbar-brand animate__animated animate__swing"
+      href="/"
+      style="font-size: 30px;"
+      ><strong>Ubike</strong></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <a class="nav-item nav-link text-secondary" style="font-style: italic;"
+          >Hello, {{ user.username }}</a
+        >
+        <a class="nav-item nav-link" href="/">Home</a>
+        <a class="nav-item nav-link" href="bookmyride">BookRide</a>
+        <a class="nav-item nav-link" href="userDashboard">Dashboard</a>
+        <a class="nav-item nav-link" href="contact">Contact</a>
+        <a class="nav-item nav-link" href="logout">Logout</a>
+        {% else %}
+        <a class="nav-item nav-link" href="register">Register</a>
+        <a class="nav-item nav-link" href="login">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="width: 40%; margin: 20px auto 0px;">
+  {% for message in messages %}
+  <div class="container alert {{message.tags}} m-2" id="msg" role="alert">
+    {{message}}
+  </div>
+  {% endfor %}
+</div>
+<video id="preview" style="width: 40%; margin: 0 auto; display: none;"></video>
+<div
+  class="container animate__animated animate__fadeIn"
+  style="
+    width: 40%;
+    margin: 5% auto;
+    padding: 3rem 2rem;
+    box-shadow: 0px 0px 15px 0px rgba(110, 5, 5, 0.7);
+  "
+>
+  <h1 class="text-center">Book A Ride</h1>
+  <hr />
+  <form action="booking" method="POST" class="mt-5">
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Pickup Location</label>
+          <select
+            class="form-control"
+            id="exampleFormControlSelect1"
+            name="pickup_location"
+          >
+            <option value="Spit College">Spit College</option>
+            <option value="Bhavans College">Bhavans College</option>
+            <option value="Bhavans Lake">Bhavans Lake</option>
+            <option value="Bhavans Ground">Bhavans Ground</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Drop Location</label>
+          <select
+            class="form-control"
+            id="exampleFormControlSelect1"
+            name="drop_location"
+          >
+            <option value="Spit College">Spit College</option>
+            <option value="Bhavans College">Bhavans College</option>
+            <option value="Bhavans Lake">Bhavans Lake</option>
+            <option value="Bhavans Ground">Bhavans Ground</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <div id="totalFare">
+            <label>Fare (INR) : </label><br />
+            <input
+              type="number"
+              name="fare"
+              value="10"
+              readonly
+              style="width: 100%; height: 36.5px; padding-left: 12px;"
+              required
+            />
+          </div>
+        </div>
+
+        <small class="text-danger">
+          ! Extra charges applied if extends 1 hr </small
+        ><br />
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <div id="fromTime">
+            <label>From Time</label><br />
+            <input
+              type="time"
+              name="from_time"
+              id="currentTime"
+              style="width: 100%; padding-left: 15px; height: 36.5px;"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <div id="toTime">
+            <label>To Time</label><br />
+            <input
+              type="time"
+              name="to_time"
+              min="00:00"
+              max="24:00"
+              style="width: 100%; padding-left: 15px; height: 36.5px;"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- <a
+          href="payment"
+          class="btn btn-warning btn-block text-white mt-5"
+          id="makePayment"
+        >
+          Make Payment
+        </a> -->
+        <button
+          class="btn btn-warning btn-block text-white mt-5"
+          id="makePayment"
+          type="button"
+        >
+          Make Payment
+        </button>
+        <button
+          class="btn btn-secondary btn-block text-white mt-2"
+          id="closeQr"
+          type="button"
+        >
+          Close Qr Scanner
+        </button>
+      </div>
+
+      <button
+        type="submit"
+        id="bookBtn"
+        class="btn btn-danger btn-md btn-block mt-2"
+      >
+        Ride
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // getting current time
+  var count = 0;
+  var date = new Date();
+  var currentTime = date.getHours() + ":" + date.getMinutes();
+  document.getElementById("currentTime").value = currentTime;
+
+  // incrementing fare on time extends to 2 hrs
+  var fromTime = document.querySelector("#fromTime > input");
+  var toTime = document.querySelector("#toTime > input");
+
+  var totalFare = document.querySelector("#totalFare > input");
+
+  function totalAmount() {
+    var one = parseFloat(fromTime.value) || 0;
+    var two = parseFloat(toTime.value) || 0;
+    var three = parseFloat(totalFare.value) || 0;
+
+    if (two - one > 1) {
+      three = three + 5;
+      totalFare.value = three;
+      if (three >= 16) {
+        totalFare.value = three - 5;
+      }
+    } else if (two - one <= 1 && two - one > 0) {
+      totalFare.value = three;
+    } else if (two - one == 0) {
+      alert("Select appropriate time");
+    }
+  }
+
+  function main() {
+    fromTime.addEventListener("input", totalAmount);
+    toTime.addEventListener("input", totalAmount);
+  }
+
+  main();
+
+  //alerting messages
+  setTimeout(function () {
+    if ($("#msg").length > 0) {
+      $("#msg").remove();
+    }
+  }, 3000);
+
+  //qr scanner closeQr
+  var closeqrBtn = document
+    .getElementById("closeQr")
+    .addEventListener("click", function () {
+      const video = document.querySelector("video");
+      // A video's MediaStream object is available through its srcObject attribute
+      const mediaStream = video.srcObject;
+      // Through the MediaStream, you can get the MediaStreamTracks with getTracks():
+      const tracks = mediaStream.getTracks();
+      // Tracks are returned as an array, so if you know you only have one, you can stop it with:
+      tracks[0].stop();
+      // Or stop all like so:
+      tracks.forEach((track) => track.stop());
+
+      document.getElementById("preview").style.display = "none";
+    });
+
+  var payBtn = document
+    .getElementById("makePayment")
+    .addEventListener("click", function () {
+      document.getElementById("preview").style.display = "block";
+      var scanner = new Instascan.Scanner({
+        video: document.getElementById("preview"),
+        scanPeriod: 5,
+        mirror: false,
+      });
+      scanner.addListener("scan", function (content) {
+        alert(content);
+        //window.location.href=content;
+      });
+      Instascan.Camera.getCameras()
+        .then(function (cameras) {
+          if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+            $('[name="options"]').on("change", function () {
+              if ($(this).val() == 1) {
+                if (cameras[0] != "") {
+                  scanner.start(cameras[0]);
+                } else {
+                  alert("No Front camera found!");
+                }
+              } else if ($(this).val() == 2) {
+                if (cameras[1] != "") {
+                  scanner.start(cameras[1]);
+                } else {
+                  alert("No Back camera found!");
+                }
+              }
+            });
+          } else {
+            console.error("No cameras found.");
+            alert("No cameras found.");
+          }
+        })
+        .catch(function (e) {
+          console.error(e);
+          alert(e);
+        });
+    });
+</script>
+
+{% endblock %}

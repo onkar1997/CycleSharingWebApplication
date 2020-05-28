@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Bhavans Colg to Spit Map</title>
+  <link rel="icon" type="image/png" href="{% static 'images/rideLogo.png' %}" />
+  <script>
+    L_NO_TOUCH = false;
+    L_DISABLE_3D = false;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"
+  />
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <style>
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  </style>
+
+  <meta
+    name="viewport"
+    content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <style>
+    #map_683c0d04f0964804be84707c76c8c0e1 {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      left: 0%;
+      top: 0%;
+    }
+  </style>
+</head>
+<body>
+  <div class="folium-map" id="map_683c0d04f0964804be84707c76c8c0e1"></div>
+</body>
+<script>
+  var map_683c0d04f0964804be84707c76c8c0e1 = L.map(
+    "map_683c0d04f0964804be84707c76c8c0e1",
+    {
+      center: [19.123178, 72.836115],
+      crs: L.CRS.EPSG3857,
+      zoom: 18,
+      zoomControl: true,
+      preferCanvas: false,
+    }
+  );
+
+  var tile_layer_6968094dc3e648dda1ce0e4b444869ca = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      attribution:
+        'Data by \u0026copy; \u003ca href="http://openstreetmap.org"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href="http://www.openstreetmap.org/copyright"\u003eODbL\u003c/a\u003e.',
+      detectRetina: false,
+      maxNativeZoom: 18,
+      maxZoom: 18,
+      minZoom: 0,
+      noWrap: false,
+      opacity: 1,
+      subdomains: "abc",
+      tms: false,
+    }
+  ).addTo(map_683c0d04f0964804be84707c76c8c0e1);
+
+  var feature_group_ff0b50963e4e463e8973c16f10b838bb = L.featureGroup({}).addTo(
+    map_683c0d04f0964804be84707c76c8c0e1
+  );
+
+  var marker_98e4804a350b45dcbd8ec39ad9b1cfa8 = L.marker(
+    [19.125023, 72.835885],
+    {}
+  ).addTo(feature_group_ff0b50963e4e463e8973c16f10b838bb);
+
+  var icon_a080962bbe3747df81b27d8210f24e34 = L.AwesomeMarkers.icon({
+    extraClasses: "fa-rotate-0",
+    icon: "info-sign",
+    iconColor: "white",
+    markerColor: "green",
+    prefix: "glyphicon",
+  });
+  marker_98e4804a350b45dcbd8ec39ad9b1cfa8.setIcon(
+    icon_a080962bbe3747df81b27d8210f24e34
+  );
+
+  var popup_ddc6923d57ae46b5bd439d4c511ffceb = L.popup({ maxWidth: "100%" });
+
+  var html_b64806a522054d89b88aa8f8a3c0f287 = $(
+    `<div id="html_b64806a522054d89b88aa8f8a3c0f287" style="width: 100.0%; height: 100.0%;">Bhavan's Main Building </div>`
+  )[0];
+  popup_ddc6923d57ae46b5bd439d4c511ffceb.setContent(
+    html_b64806a522054d89b88aa8f8a3c0f287
+  );
+
+  marker_98e4804a350b45dcbd8ec39ad9b1cfa8.bindPopup(
+    popup_ddc6923d57ae46b5bd439d4c511ffceb
+  );
+
+  var marker_5c2c107c64ef427aafc2096cca8d180f = L.marker(
+    [19.123178, 72.836115],
+    {}
+  ).addTo(feature_group_ff0b50963e4e463e8973c16f10b838bb);
+
+  var icon_501b3cbd042c44dc84a02c442011173b = L.AwesomeMarkers.icon({
+    extraClasses: "fa-rotate-0",
+    icon: "info-sign",
+    iconColor: "white",
+    markerColor: "green",
+    prefix: "glyphicon",
+  });
+  marker_5c2c107c64ef427aafc2096cca8d180f.setIcon(
+    icon_501b3cbd042c44dc84a02c442011173b
+  );
+
+  var popup_0de5dee83ea241c38662a97fa026c8d9 = L.popup({ maxWidth: "100%" });
+
+  var html_e974afd707d94eeb83a5086203e1c61c = $(
+    `<div id="html_e974afd707d94eeb83a5086203e1c61c" style="width: 100.0%; height: 100.0%;">SPIT</div>`
+  )[0];
+  popup_0de5dee83ea241c38662a97fa026c8d9.setContent(
+    html_e974afd707d94eeb83a5086203e1c61c
+  );
+
+  marker_5c2c107c64ef427aafc2096cca8d180f.bindPopup(
+    popup_0de5dee83ea241c38662a97fa026c8d9
+  );
+</script>

@@ -1,0 +1,198 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<!-- NAVBAR -->
+<nav
+  class="navbar navbar-expand-lg py-3"
+  style="
+    background-color: rgba(200, 200, 200, 0.2);
+    color: black;
+    font-weight: bold;
+    border-bottom: solid 2px #1270af;
+    box-shadow: 0px 0px 10px 1px rgba(51, 123, 206, 0.6);
+  "
+>
+  <div class="container">
+    <a
+      class="navbar-brand animate__animated animate__swing"
+      href="/"
+      style="font-size: 30px;"
+      ><strong>Ubike</strong></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <a class="nav-item nav-link text-secondary" style="font-style: italic;"
+          >Hello, {{ user.username }}</a
+        >
+        <a class="nav-item nav-link" href="/">Home</a>
+        <a class="nav-item nav-link" href="bookmyride">BookRide</a>
+        <a class="nav-item nav-link" href="userDashboard">Dashboard</a>
+        <a class="nav-item nav-link" href="contact">Contact</a>
+        <a class="nav-item nav-link" href="logout">Logout</a>
+        {% else %}
+        <a class="nav-item nav-link" href="register">Register</a>
+        <a class="nav-item nav-link" href="login">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- contact form -->
+<section
+  id="contact"
+  class="py-5 my-5 animate__animated animate__fadeIn"
+  style="position: relative;"
+>
+  <div class="container">
+    {% for message in messages %}
+    <div
+      class="container alert {{message.tags}}"
+      id="msg"
+      role="alert"
+      style="position: absolute; top: 0;"
+    >
+      {{message}}
+    </div>
+    {% endfor %}
+    <form action="contactUs" method="POST" class="mt-4 mb-4">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-4">
+          <div
+            class="card p-4 bg-light"
+            style="box-shadow: 0px 0px 10px 5px rgba(201, 208, 216, 0.6);"
+          >
+            <div class="card-body">
+              <h4>Get In Touch</h4>
+              <hr />
+              <p>
+                Tell us what you think
+              </p>
+              <h5>Address</h5>
+              <p>
+                UBike Technologies Private Limited Regent Insignia, Mumbai,
+                400055
+              </p>
+              <h5>Email</h5>
+              <p>ubike@gmail.com</p>
+              <h5>Phone</h5>
+              <p>+91 9854785478</p>
+              <h5>Social</h5>
+              <p>
+                <i class="fa fa-facebook-square fa-2x text-primary"></i>&nbsp;
+                <i class="fa fa-instagram fa-2x text-danger"></i>&nbsp;
+                <i class="fa fa-twitter fa-2x text-primary"></i>&nbsp;
+                <i class="fa fa-whatsapp fa-2x text-success"></i>&nbsp;
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div
+            class="card p-4 bg-light"
+            style="box-shadow: 0px 0px 10px 5px rgba(201, 208, 216, 0.6);"
+          >
+            <div class="card-body" style="padding-bottom: 30px;">
+              <h3 class="text-center">
+                Please fill out this form to contact us
+              </h3>
+              <hr />
+              {% if user.id %}
+              <div class="row mt-5">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="first_name"
+                      class="form-control"
+                      value="{{user.first_name}}"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="last_name"
+                      class="form-control"
+                      value="{{user.last_name}}"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="email"
+                      class="form-control"
+                      value="{{user.email}}"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="phone"
+                      class="form-control"
+                      placeholder="Phone Number"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <textarea
+                      name="message"
+                      class="form-control"
+                      placeholder="Message/Feedback. . ."
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12 mt-3 mb-4">
+                  <div class="form-group">
+                    <input
+                      type="submit"
+                      value="Submit"
+                      class="btn btn-outline-primary btn-block"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  //alerting messages
+  setTimeout(function () {
+    if ($("#msg").length > 0) {
+      $("#msg").remove();
+    }
+  }, 3000);
+</script>
+{% endblock %}

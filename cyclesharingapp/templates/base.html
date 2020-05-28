@@ -1,0 +1,353 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ubike</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/rideLogo.png' %}"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style>
+      .steps .howItWorks .how:hover {
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+        box-shadow: 0px 0px 5px 5px rgba(217, 217, 217, 1);
+      }
+      .info .how:hover {
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+      }
+
+      .padding {
+        padding: 5rem !important;
+      }
+
+      .form-control:focus {
+        box-shadow: 10px 0px 0px 0px #ffffff !important;
+        border-color: #4ca746;
+      }
+
+      .faq .accordion .accord {
+        color: #111;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 18px;
+      }
+
+      .faq .accordion .card-header {
+        margin-bottom: 2px;
+        box-shadow: 0px 0px 3px 3px #999;
+      }
+
+      #preview {
+        width: 500px;
+        height: 500px;
+        margin: 0px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- BLOCK CONTENT -->
+    {% block content %} {% endblock %}
+
+    <!-- FOOTER -->
+    <div
+      class="contact"
+      style="
+        background-color: black;
+        color: white;
+        padding: 60px 0;
+        text-align: left;
+      "
+    >
+      <div class="container">
+        <div class="row m-0">
+          <div class="col-sm-6">
+            <h1
+              style="
+                font-size: 32px;
+                text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 3px;
+                margin-top: 0;
+                padding-left: 40px;
+              "
+            >
+              CS APP
+            </h1>
+            <div class="contact-list">
+              <ul class="ul-contact" style="list-style: none;">
+                <li
+                  style="
+                    margin-top: 20px;
+                    margin-bottom: 25px;
+                    font-size: 16px;
+                  "
+                >
+                  <img src={% static 'images/help.png' %} style="margin-right:
+                  15px; vertical-align: middle;">Help center
+                </li>
+                <li
+                  style="
+                    margin-top: 20px;
+                    margin-bottom: 25px;
+                    font-size: 16px;
+                  "
+                >
+                  <img src={% static 'images/world.png' %} style="margin-right:
+                  15px; vertical-align: middle;">English
+                </li>
+                <li
+                  style="
+                    margin-top: 20px;
+                    margin-bottom: 25px;
+                    font-size: 16px;
+                  "
+                >
+                  <img src={% static 'images/map.png' %} style="margin-right:
+                  15px; vertical-align: middle;">Mumbai
+                </li>
+              </ul>
+            </div>
+            <br />
+            <div class="get-app">
+              <ul style="list-style: none;">
+                <li
+                  style="display: inline-block; font-size: 16px; color: #fff;"
+                >
+                  <a href="#" target="_blank"
+                    ><img
+                      src="{% static 'images/app-store.svg' %}"
+                      style="margin-right: 10px; margin-top: 10px;"
+                  /></a>
+                </li>
+                <li
+                  style="display: inline-block; font-size: 16px; color: #fff;"
+                >
+                  <a href="#" target="_blank"
+                    ><img
+                      src="{% static 'images/play-store.svg' %}"
+                      style="margin-right: 10px; margin-top: 10px;"
+                  /></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <h3
+              style="
+                font-size: 20px;
+                margin-top: 0;
+                font-weight: 600;
+                letter-spacing: 1px;
+                margin-bottom: 30px;
+                padding-left: 30px;
+              "
+            >
+              About Us
+            </h3>
+            <div class="about">
+              <ul style="list-style: none;">
+                <li
+                  style="font-size: 16px; margin-right: 20px; margin-top: 10px;"
+                >
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="color: white; text-decoration: none;"
+                    >Home</a
+                  >
+                </li>
+                <li
+                  style="font-size: 16px; margin-right: 20px; margin-top: 10px;"
+                >
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="color: white; text-decoration: none;"
+                    >About</a
+                  >
+                </li>
+                <li
+                  style="font-size: 16px; margin-right: 20px; margin-top: 10px;"
+                >
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="color: white; text-decoration: none;"
+                    >Solution</a
+                  >
+                </li>
+                <li
+                  style="font-size: 16px; margin-right: 20px; margin-top: 10px;"
+                >
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="color: white; text-decoration: none;"
+                    >Partners</a
+                  >
+                </li>
+                <li
+                  style="font-size: 16px; margin-right: 20px; margin-top: 10px;"
+                >
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="color: white; text-decoration: none;"
+                    >Team</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <h3
+              style="
+                font-size: 20px;
+                margin-top: 0;
+                font-weight: 600;
+                letter-spacing: 1px;
+                margin-bottom: 20px;
+              "
+            >
+              Address
+            </h3>
+
+            <p
+              style="
+                margin-left: 0;
+                font-size: 16px;
+                line-height: 24px;
+                padding-top: 7px;
+              "
+            >
+              Bhavans Campus, Old D N Nagar, Munshi Nagar, Andheri West, Mumbai,
+              Maharashtra 400058
+            </p>
+            <div class="social">
+              <ul style="list-style: none;">
+                <li
+                  style="
+                    display: inline-block;
+                    margin-right: 10px;
+                    margin-left: -40px;
+                  "
+                >
+                  <a href="#" target="_blank"
+                    ><img
+                      src="{% static 'images/instagram.png' %}"
+                      style="
+                        display: inline-block;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                      "
+                  /></a>
+                </li>
+                <li style="display: inline-block; margin-right: 10px;">
+                  <a href="#" target="_blank"
+                    ><img
+                      src="{% static 'images/twitter.png' %}"
+                      style="
+                        display: inline-block;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                      "
+                  /></a>
+                </li>
+                <li style="display: inline-block; margin-right: 10px;">
+                  <a href="#" target="_blank"
+                    ><img
+                      src="{% static 'images/whatsapp.png' %}"
+                      style="
+                        display: inline-block;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                      "
+                  /></a>
+                </li>
+                <li style="display: inline-block;">
+                  <a href="#" target="_blank"
+                    ><img
+                      src="{% static 'images/facebook.png' %}"
+                      style="
+                        display: inline-block;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                      "
+                  /></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button id="scroll-to-top" class="bg-primary">
+          <i class="fa fa-angle-double-up"></i>
+        </button>
+        <hr
+          class="footer-hr"
+          style="margin-top: 50px; border-top: 1px solid #2c2c2c;"
+        />
+        <p class="text-center ml-0">copyright © 2020 csapp inc.</p>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+  </body>
+
+  <!-- custom js -->
+</html>

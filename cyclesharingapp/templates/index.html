@@ -1,0 +1,505 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<!-- NAVBAR -->
+<nav
+  class="navbar navbar-expand-lg py-3"
+  style="
+    background-color: rgba(200, 200, 200, 0.2);
+    color: black;
+    font-weight: bold;
+    border-bottom: solid 2px #1270af;
+    box-shadow: inset 0px -12px 8px -10px rgba(51, 123, 250, 0.6);
+  "
+>
+  <div class="container">
+    <a
+      class="navbar-brand animate__animated animate__swing"
+      href="/"
+      style="font-size: 30px;"
+      ><strong>Ubike</strong></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <a class="nav-item nav-link text-secondary" style="font-style: italic;"
+          >Hello, {{ user.username }}</a
+        >
+        <a class="nav-item nav-link" href="users/bookmyride">BookRide</a>
+        <a class="nav-item nav-link" href="users/userDashboard">Dashboard</a>
+        <a class="nav-item nav-link" href="users/contact">Contact</a>
+        <a class="nav-item nav-link" href="users/logout">Logout</a>
+        {% else %}
+        <a class="nav-item nav-link" href="users/login">BookRide</a>
+        <a class="nav-item nav-link" href="users/register">Register</a>
+        <a class="nav-item nav-link" href="users/login">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="banner-image" style="position: relative;">
+  <img src="{% static 'images/cycle1.jpeg' %}" width="100%" />
+
+  <div
+    style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.65);
+      z-index: 2000;
+    "
+  >
+    <h1
+      class="text-center animate__animated animate__backInUp"
+      style="
+        color: white;
+        text-shadow: 0px 0px 7px rgb(9, 127, 182);
+        font-weight: bold;
+        padding-top: 14%;
+        font-size: 40px;
+      "
+    >
+      Book a Cycle to your destination in campus !
+    </h1>
+    <p
+      class="text-center animate__animated animate__backInUp"
+      style="
+        color: white;
+        text-shadow: 0px 0px 10px rgb(9, 127, 182);
+        font-size: 25px;
+      "
+    >
+      Book <span style="text-decoration: underline;">Ubike</span> & Enjoy The
+      Ride ;)
+    </p>
+
+    {% if user.is_authenticated %}
+
+    <a
+      href="users/bookmyride"
+      class="btn btn-lg book cta animate__animated animate__backInDown"
+      style="
+        position: absolute;
+        top: 55%;
+        left: 0;
+        right: 0;
+        margin: 0px auto;
+        text-align: center;
+        width: 160px;
+        text-transform: uppercase;
+        background-color: rgb(6, 110, 158);
+        color: #fff;
+      "
+      >Book Ride</a
+    >
+    {% else %}
+    <a
+      href="users/login"
+      class="btn btn-lg book cta animate__animated animate__backInDown"
+      style="
+        position: absolute;
+        top: 55%;
+        left: 0;
+        right: 0;
+        margin: 0px auto;
+        text-align: center;
+        width: 160px;
+        text-transform: uppercase;
+        background-color: rgb(6, 110, 158);
+        color: #fff;
+      "
+      >Book Ride</a
+    >
+    {% endif %}
+  </div>
+</div>
+
+<!-- steps -->
+<div
+  class="steps"
+  style="background-color: #eee; text-align: center; padding: 60px 0;"
+>
+  <div class="container howItWorks">
+    <h1 class="text-center mt-4" data-aos="fade-up" data-aos-duration="1000">
+      HOW IT WORKS ?
+    </h1>
+    <hr />
+    <div
+      class="row mb-5"
+      style="margin-top: 5%;"
+      data-aos="fade-up"
+      data-aos-duration="1500"
+    >
+      <div class="col-sm-3 px-3 how">
+        <img src="{% static 'images/borrow.png' %}" width="60px" class="mt-4" />
+        <h1
+          style="font-size: 26px; font-weight: 700; color: #282828;"
+          class="mt-3"
+        >
+          1.Borrow
+        </h1>
+        <p class="text-center mb-4">
+          Enter the bikes number into the app and tap " Start Ride ". You will
+          get a code to open and close the lockbox.
+        </p>
+      </div>
+      <div class="col-sm-3 px-3 how">
+        <img src="{% static 'images/unlock.png' %}" width="60px" class="mt-4" />
+        <h1
+          style="font-size: 26px; font-weight: 700; color: #282828;"
+          class="mt-3"
+        >
+          2.Unlock
+        </h1>
+        <p class="text-center mb-4">
+          Use the key inside the lockbox to operate the U-lock that attaches the
+          bike to its station.close the lockbox before you ride.
+        </p>
+      </div>
+      <div class="col-sm-3 px-3 how">
+        <img src="{% static 'images/ride1.png' %}" width="60px" class="mt-4" />
+        <h1
+          style="font-size: 26px; font-weight: 700; color: #282828;"
+          class="mt-3"
+        >
+          3.Ride
+        </h1>
+        <p class="text-center mb-4">
+          Have fun and stay safe!<br />Use the U-lock to keep the bike secure if
+          you make stop along the way.
+        </p>
+      </div>
+      <div class="col-sm-3 px-3 how">
+        <img src="{% static 'images/return.png' %}" width="60px" class="mt-4" />
+        <h1
+          style="font-size: 26px; font-weight: 700; color: #282828;"
+          class="mt-3"
+        >
+          4.Return
+        </h1>
+        <p class="text-center mb-4">
+          When you are done,lock the bike back to a drop point and close the
+          lockbox.Then go to the app and tap "End ride".
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- info -->
+<div class="info" style="padding: 60px 0;">
+  <div class="container">
+    <h1 class="text-center mt-4" data-aos="fade-up" data-aos-duration="1000">
+      BENEFITS !
+    </h1>
+    <hr />
+    <div
+      class="row"
+      style="margin-top: 6%;"
+      data-aos="fade-up"
+      data-aos-duration="1500"
+    >
+      <div class="col-sm-6">
+        <div class="info-list">
+          <ul style="list-style: none;">
+            <li
+              class="how"
+              style="
+                margin-bottom: 25px;
+                font-size: 20px;
+                background-color: #eee;
+                padding: 12px 15px;
+                border-radius: 5px;
+
+                -webkit-box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+                -moz-box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+                box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+              "
+            >
+              <img
+                src="{% static 'images/cardio.png' %}"
+                style="margin-right: 15px; vertical-align: middle;"
+              /><b>CARDIO TRAINING</b>
+            </li>
+            <li
+              class="how"
+              style="
+                margin-bottom: 25px;
+                font-size: 20px;
+                background-color: #eee;
+                padding: 12px 15px;
+                border-radius: 5px;
+
+                -webkit-box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+                -moz-box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+                box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+              "
+            >
+              <img
+                src="{% static 'images/petrol.png' %}"
+                style="margin-right: 15px; vertical-align: middle;"
+              /><b>SAVE PETROL</b>
+            </li>
+            <li
+              class="how"
+              style="
+                margin-bottom: 25px;
+                font-size: 20px;
+                background-color: #eee;
+                padding: 12px 15px;
+                border-radius: 5px;
+
+                -webkit-box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+                -moz-box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+                box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+              "
+            >
+              <img
+                src="{% static 'images/environment.png' %}"
+                style="margin-right: 15px; vertical-align: middle;"
+              /><b>PROTECT ENVIRONMENT</b>
+            </li>
+            <li
+              class="how"
+              style="
+                margin-bottom: 25px;
+                font-size: 20px;
+                background-color: #eee;
+                padding: 12px 15px;
+                border-radius: 5px;
+
+                -webkit-box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+                -moz-box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+                box-shadow: 6px 7px 5px 0px rgba(217, 217, 217, 1);
+              "
+            >
+              <img
+                src="{% static 'images/healthy.png' %}"
+                style="margin-right: 15px; vertical-align: middle;"
+              /><b>STAY HEALTHY</b>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <img src="{% static 'images/ride1.jpg' %}" width="100%" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- faq's -->
+<div class="faq" style="padding: 60px 0;">
+  <div class="container">
+    <h1 class="text-center mt-4" data-aos="fade-up" data-aos-duration="1000">
+      FAQ'S
+    </h1>
+    <hr />
+    <div class="row" style="margin-top: 6%;">
+      <div class="col-md-6">
+        <div class="accordion" id="accordionExample">
+          <div class="card" data-aos="fade-up" data-aos-duration="1500">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button
+                  class="btn btn-link accord"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  What is UBike ?
+                </button>
+              </h2>
+            </div>
+
+            <div
+              id="collapseOne"
+              class="collapse"
+              aria-labelledby="headingOne"
+              data-parent="#accordionExample"
+            >
+              <div class="card-body">
+                UBike is a Bike/Cycle Sharing Web App, where user can book a
+                cycle to travel to certain amout of destination and time.
+              </div>
+            </div>
+          </div>
+          <div
+            class="card bg-light"
+            data-aos="fade-up"
+            data-aos-duration="1700"
+          >
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button
+                  class="btn btn-link collapsed accord"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  How it works ?
+                </button>
+              </h2>
+            </div>
+            <div
+              id="collapseTwo"
+              class="collapse"
+              aria-labelledby="headingTwo"
+              data-parent="#accordionExample"
+            >
+              <div class="card-body">
+                UBike is very user-friendly and easy to use. You just need to
+                open our site URL, register, login and enter select the from and
+                to locations , make the payment and Go.
+              </div>
+            </div>
+          </div>
+          <div class="card" data-aos="fade-up" data-aos-duration="1900">
+            <div class="card-header" id="headingThree">
+              <h2 class="mb-0">
+                <button
+                  class="btn btn-link collapsed accord"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  How do I pay for my ride ?
+                </button>
+              </h2>
+            </div>
+            <div
+              id="collapseThree"
+              class="collapse"
+              aria-labelledby="headingThree"
+              data-parent="#accordionExample"
+            >
+              <div class="card-body">
+                Payment is very easy, no Rocket Science! You can do payment via
+                Debit Card.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="accordion" id="accordionExample2">
+          <div
+            class="card bg-light"
+            data-aos="fade-up"
+            data-aos-duration="1500"
+          >
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button
+                  class="btn btn-link accord"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseFour"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  How much does UBike cost ?
+                </button>
+              </h2>
+            </div>
+
+            <div
+              id="collapseFour"
+              class="collapse"
+              aria-labelledby="headingOne"
+              data-parent="#accordionExample2"
+            >
+              <div class="card-body">
+                UBike charges a fixed rate to unlock a vehicle and then charges
+                extra Rs 5/- if you extend 1 hour of gap as you ride. Rides may
+                also be subject to a minimum charge.
+              </div>
+            </div>
+          </div>
+          <div class="card" data-aos="fade-up" data-aos-duration="1700">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button
+                  class="btn btn-link collapsed accord"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseFive"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  How to contact UBike ?
+                </button>
+              </h2>
+            </div>
+            <div
+              id="collapseFive"
+              class="collapse"
+              aria-labelledby="headingTwo"
+              data-parent="#accordionExample2"
+            >
+              <div class="card-body">
+                A dedicated Contct Us section is provided by us, in case if you
+                have any queries or feedbacks for us. We try to get in touch
+                within an hour.
+              </div>
+            </div>
+          </div>
+          <div
+            class="card bg-light"
+            data-aos="fade-up"
+            data-aos-duration="1900"
+          >
+            <div class="card-header" id="headingThree">
+              <h2 class="mb-0">
+                <button
+                  class="btn btn-link collapsed accord"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseSix"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  How far can you ride a UBike ?
+                </button>
+              </h2>
+            </div>
+            <div
+              id="collapseSix"
+              class="collapse"
+              aria-labelledby="headingThree"
+              data-parent="#accordionExample2"
+            >
+              <div class="card-body">
+                After you have your account set up, you're ready to take your
+                first ride. The UBike is specifically made for college campus,
+                so you ride within the college campus.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<!-- NAVBAR -->
+<nav
+  class="navbar navbar-expand-lg py-2"
+  style="
+    background-color: rgba(200, 200, 200, 0.2);
+    color: black;
+    font-weight: bold;
+    border-bottom: solid 3px #1270af;
+    box-shadow: 0px 0px 10px 1px rgba(51, 123, 206, 0.6);
+    padding-left: 44%;
+    position: relative;
+  "
+>
+  <div class="container">
+    <a
+      class="navbar-brand animate__animated animate__swing"
+      href="adminDashboard"
+      style="font-size: 30px;"
+      ><strong>Ubike</strong></a
+    >
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav" style="padding-bottom: 11%;">
+        <a
+          class="nav-item nav-link text-primary"
+          style="position: absolute; left: 0; margin-left: 11%;"
+          href="adminDashboard"
+          ><i class="fa fa-arrow-circle-left fa-3x"></i
+        ></a>
+      </div>
+      <div class="navbar-nav mr-auto" style="padding-bottom: 7%;">
+        <a
+          class="nav-item nav-link"
+          style="position: absolute; right: 0; margin-right: 20%;"
+          href="registeredUser"
+          >USERS</a
+        >
+        <a
+          class="nav-item nav-link"
+          style="position: absolute; right: 0; margin-right: 10%;"
+          href="registeredRide"
+          >RIDES BOOKED</a
+        >
+        <a
+          class="nav-item nav-link"
+          style="
+            position: absolute;
+            right: 0;
+            margin-right: 2%;
+            padding-right: 10px;
+          "
+          href="receivedFeedback"
+          >FEEDBACKS</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container" style="margin: 4% auto 10%; width: 70%;">
+  <div
+    class="card animate__animated animate__fadeIn"
+    style="box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);"
+  >
+    <h4 class="card-header text-center bg-dark text-white">
+      FEEDBACKS / MESSAGES
+    </h4>
+    <div class="card-body p-5">
+      <div class="row">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">User Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Feedback/Message</th>
+              <th scope="col">Phone</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for msg in msgs %}
+            <tr>
+              <th scope="row">{{ msg.id }}</th>
+              <th scope="row">{{ msg.user_id }}</th>
+              <td>{{ msg.first_name }} {{ msg.last_name }}</td>
+              <td>{{ msg.email }}</td>
+              <td>{{ msg.message }}</td>
+              <td>{{ msg.phone }}</td>
+              <td>
+                <form action="deleteFeedback/{{msg.id}}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
